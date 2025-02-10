@@ -1,0 +1,20 @@
+{
+  "serverInfo": {
+    "host": "101.43.50.15",
+    "username": "root",
+    "port": "22"
+  },
+  "nginxInfo": {
+    "remoteFilePath": "/usr/local/nginx/conf",
+    "restartPath": "/usr/local/nginx/sbin"
+  },
+  "serviceInfo": {
+    "restartPath": "/usr/local/server"
+  },
+  "babyStudy": {
+    "name": "study_html",
+    "localFilePath": "/Users/dnhyxc/Documents/code/baby-study",
+    "remoteFilePath": "/usr/local/nginx/study",
+    "isServer": false
+  }
+}
