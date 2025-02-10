@@ -242,10 +242,7 @@ export const GUSHI_LIST = [
   {
     name: '赋得古原草',
     poem: ['赋得古原草', '[唐] 白居易', '离离原上草', '一岁一枯荣', '野火烧不尽', '春风吹又生'],
-    translation: [
-      '原野上长满茂盛的青草，每年秋冬枯黄春来草色浓。',
-      '野火无法烧尽满地的野草，春风吹来大地又是绿茸茸。',
-    ],
+    translation: ['原野上长满茂盛的青草，每年秋冬枯黄春来草色浓。', '野火无法烧尽满地的野草，春风吹来大地又是绿茸茸。'],
     desc: '《赋得古原草》这首诗通过对古原上草木的描绘，表达了对生命顽强生命力的赞美。即使经历了野火的烧灼，草木仍然在春天的风中重新生长，展现了顽强的生命力和不屈的精神。',
     link: 'https://www.gushiwen.cn/shiwenv_ad8757771ddb.aspx',
     audio: 'https://ziyuan.guwendao.net/song/jiangweiwei/b7820a12ebaa.mp3',
@@ -367,5 +364,27 @@ export const GUSHI_LIST = [
     desc: '《早发白帝城》这首诗通过对早晨出发离开白帝城的景色描写，表达了诗人对自由和速度的赞美。诗中描写了白帝城的美景、江陵的快速到达以及猿声啼叫的场景，展现了诗人离开时的喜悦之情和对自然景色的热爱。',
     link: 'https://www.gushiwen.cn/shiwenv.aspx?id=37799',
     audio: 'https://ziyuan.guwendao.net/song/chenlang/0f81015a040c.mp3',
+  },
+  {
+    name: '采莲曲',
+    poem: ['采莲曲', '[唐] 王昌龄', '荷叶罗裙一色裁', '芙蓉向脸两边开', '乱入池中看不见', '闻歌始觉有人来'],
+    translation: [
+      '采莲少女的绿罗裙融入到田田荷叶中，仿佛一色，少女的脸庞掩映在盛开的荷花间，相互映照。',
+      '混入莲池中不见了踪影，听到歌声四起才觉察到有人前来。',
+    ],
+    desc: '《采莲曲》这首诗通过对采莲女在荷塘中采莲情景的描绘，表达了诗人对自然美景和采莲女纯真形象的赞美。诗中描写了荷叶、罗裙、荷花和采莲女的歌声，展现了采莲女在荷塘中的生动画面和宁静的氛围。',
+    link: 'https://www.gushiwen.cn/shiwenv_c953220f9f52.aspx',
+    audio: 'https://ziyuan.guwendao.net/song/chenlang/c953220f9f52.mp3',
+  },
+  {
+    name: '绝句 (池日江山)',
+    poem: ['绝句 (池日江山)', '[唐] 杜甫', '迟日江山丽', '春风花草香', '泥融飞燕子', '沙暖睡鸳鸯'],
+    translation: [
+      '沐浴在春光下的江河山川是如此秀丽，春风拂过送来阵阵花香。',
+      '泥土已经变得松软，燕子衔泥筑巢，暖和的沙子上睡着成双成对的鸳鸯。',
+    ],
+    desc: '《绝句 (池日江山)》这首诗通过对春日江山景色的描绘，表达了诗人对自然美景的喜爱和赞美。诗中描写了春日阳光、花草香气、燕子飞翔和鸳鸯安眠的景象，展现了春天的生机与和谐。',
+    link: 'https://www.gushiwen.cn/shiwenv_e5e7911da1d2.aspx',
+    audio: 'https://ziyuan.guwendao.net/song/chenlang/e5e7911da1d2.mp3',
   },
 ];
