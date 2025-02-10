@@ -1,11 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 // https://pinyin-pro.cn/use/html.html
 import { html } from 'pinyin-pro';
 import { GUSHI_LIST } from '@/constant';
 import { scrollTo } from '@/utils';
 
 const prevAudio = ref<HTMLAudioElement | null>(null);
+const scrollTop = ref<number>(0);
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll);
+});
+
+const onScroll = () => {
+  scrollTop.value = document.documentElement.scrollTop;
+};
 
 const data = GUSHI_LIST.map((i) => {
   return {
@@ -36,6 +49,10 @@ const stopAudio = (index: number) => {
   }
 };
 
+const onRefresh = () => {
+  location.reload();
+};
+
 const onScrollTo = () => {
   scrollTo(document.documentElement, 0);
 };
@@ -62,11 +79,16 @@ const onScrollTo = () => {
       </div>
       <audio :id="`audioPlayer${index}`" :src="item.audio">您的浏览器不支持<code>audio</code> 元素。</audio>
     </div>
-    <ToTopIcon :onScrollTo="onScrollTo" />
+    <ToTopIcon v-if="scrollTop > 500" :onScrollTo="onScrollTo" />
+    <div class="refresh" @click="onRefresh">
+      <i class="iconfont icon-refresh" />
+    </div>
   </div>
 </template>
 
 <style scoped lang="less">
+@import '@/styles/index.less';
+
 .home-wrap {
   text-align: center;
   padding: 10px;
@@ -155,6 +177,27 @@ const onScrollTo = () => {
     .yiwen {
       border-top: 1px dashed #d4d2be;
       border-bottom: 1px dashed #d4d2be;
+    }
+  }
+
+  .refresh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+    background-color: rgba(212, 210, 190, 0.8);
+    box-shadow: 0 0 10px @bg;
+    padding: 5px;
+    cursor: pointer;
+    z-index: 999;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+
+    .icon-refresh {
+      font-size: 18px;
     }
   }
 
