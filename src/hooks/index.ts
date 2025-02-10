@@ -27,12 +27,12 @@ export const useScroller = (visible?: boolean) => {
 
   onMounted(() => {
     // 监听滚动条滚动事件
-    scrollRef.value?.wrapRef?.addEventListener('scroll', onScroll);
+    scrollRef.value?.addEventListener('scroll', onScroll);
   });
 
   onUnmounted(() => {
     // 卸载滚动条滚动事件
-    scrollRef.value?.wrapRef.removeEventListener('scroll', onScroll);
+    scrollRef.value.removeEventListener('scroll', onScroll);
   });
 
   // 滚动事件

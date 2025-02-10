@@ -1,7 +1,7 @@
 // 滚动到某位置
-export const scrollTo = (element: any, position: number, time = 20, type = 'top') => {
+export const scrollTo = (ref: any, position: number, time = 20, type = 'top') => {
   // el-scrollbar 容器
-  const el = element as HTMLDivElement;
+  const el = ref.value as HTMLDivElement;
   // 使用requestAnimationFrame，如果没有则使用setTimeOut
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = (callback) => {

@@ -33,7 +33,7 @@ const onScroll = () => {
   justify-content: center;
   position: fixed;
   right: 20px;
-  bottom: 80px;
+  bottom: 130px;
   background-color: rgba(212, 210, 190, 0.8);
   box-shadow: 0 0 10px @bg;
   padding: 5px;

@@ -48,12 +48,12 @@
   white-space: nowrap;
 }
 
-.webkitScrollbarStyle(@bg, @fc) {
+.webkitScrollbarStyle(@bg, @fc, @w) {
   /*整个滚动条*/
   ::-webkit-scrollbar {
-    width: 8px;
+    width: @w;
     height: 8px;
-    background-color: @bg;
+    background-color: transparent;
   }
 
   /*定义滚动条轨道*/
@@ -63,7 +63,7 @@
 
   /*定义滑块*/
   ::-webkit-scrollbar-thumb {
-    background-color: @fc;
+    background-color: transparent;
     border-radius: 5px;
   }
 }

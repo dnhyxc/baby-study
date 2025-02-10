@@ -4,21 +4,12 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import { html } from 'pinyin-pro';
 import { GUSHI_LIST } from '@/constant';
 import { scrollTo } from '@/utils';
+import { useScroller } from '@/hooks';
 
+const { scrollRef, scrollTop } = useScroller();
 const prevAudio = ref<HTMLAudioElement | null>(null);
-const scrollTop = ref<number>(0);
-
-onMounted(() => {
-  window.addEventListener('scroll', onScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll);
-});
-
-const onScroll = () => {
-  scrollTop.value = document.documentElement.scrollTop;
-};
+const visible = ref<boolean>(false);
+const activeKey = ref<string>('');
 
 const data = GUSHI_LIST.map((i) => {
   return {
@@ -54,13 +45,25 @@ const onRefresh = () => {
 };
 
 const onScrollTo = () => {
-  scrollTo(document.documentElement, 0);
+  scrollTo(scrollRef, 0);
+};
+
+const onShow = () => {
+  visible.value = true;
+};
+
+const onJumpTo = (index: number, key: string) => {
+  const target = document.getElementById(`poem-${index}`) as HTMLElement;
+  if (target) {
+    activeKey.value = key;
+    scrollTo(scrollRef, target.offsetTop - 10);
+  }
 };
 </script>
 
 <template>
-  <div class="home-wrap">
-    <div v-for="(item, index) in data" :key="item.key" class="poems-item">
+  <div class="home-wrap" ref="scrollRef">
+    <div v-for="(item, index) in data" :key="item.key" class="poems-item" :id="`poem-${index}`">
       <div class="poems">
         <div v-for="(i, index) in item.poem" :key="index" class="text" v-html="i" />
       </div>
@@ -83,6 +86,19 @@ const onScrollTo = () => {
     <div class="refresh" @click="onRefresh">
       <i class="iconfont icon-refresh" />
     </div>
+    <div class="menu" @click="onShow">
+      <i class="iconfont icon-mulu" />
+    </div>
+    <el-drawer v-model="visible" title="诗词目录" size="50%" direction="btt" custom-class="menu-drawer">
+      <div class="menu-list">
+        <div v-for="(item, index) in GUSHI_LIST" :key="item.name">
+          <div :class="`menu-item ${activeKey === item.name ? 'active' : ''}`" @click="onJumpTo(index, item.name)">
+            <span class="num">{{ index + 1 }}.</span>
+            {{ item.name }}
+          </div>
+        </div>
+      </div>
+    </el-drawer>
   </div>
 </template>
 
@@ -94,7 +110,8 @@ const onScrollTo = () => {
   padding: 10px;
   background-color: #d4d2be;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: auto;
+  height: 100vh;
 
   .poems-item {
     background-color: #f0efe3;
@@ -138,7 +155,7 @@ const onScrollTo = () => {
       .link,
       .desc {
         margin-bottom: 10px;
-        color: #7899fa;
+        color: #5782ff;
 
         :deep {
           .py-chinese-item {
@@ -180,7 +197,8 @@ const onScrollTo = () => {
     }
   }
 
-  .refresh {
+  .refresh,
+  .menu {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -196,8 +214,34 @@ const onScrollTo = () => {
     height: 30px;
     border-radius: 5px;
 
-    .icon-refresh {
+    .icon-refresh,
+    .icon-mulu {
       font-size: 18px;
+    }
+  }
+
+  .menu {
+    right: 20px;
+    bottom: 80px;
+  }
+
+  .menu-list {
+    box-sizing: border-box;
+
+    .menu-item {
+      display: block;
+      padding: 10px;
+      border-bottom: 1px solid #dbdacb;
+      color: #5782ff;
+      text-align: left;
+
+      .num {
+        margin-right: 5px;
+      }
+    }
+
+    .active {
+      background-color: #dbdacb;
     }
   }
 
@@ -214,6 +258,28 @@ const onScrollTo = () => {
         font-size: 20px;
       }
     }
+  }
+}
+
+:deep {
+  .el-drawer__header {
+    margin-bottom: 20px;
+    padding: 20px 5px 0 10px;
+    text-align: left;
+
+    .el-drawer__title {
+      font-weight: 600;
+      color: #333;
+      font-size: 18px;
+    }
+  }
+
+  .el-drawer__body {
+    padding: 0;
+  }
+
+  .el-drawer {
+    background-color: rgba(212, 210, 190, 0.9);
   }
 }
 </style>
