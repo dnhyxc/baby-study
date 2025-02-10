@@ -33,14 +33,14 @@ const onScroll = () => {
   justify-content: center;
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 30px;
   background-color: rgba(212, 210, 190, 0.8);
   box-shadow: 0 0 10px @bg;
   padding: 5px;
   cursor: pointer;
   z-index: 999;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: 5px;
 
   .icon {
