@@ -31,11 +31,11 @@ const onScroll = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  right: 12px;
-  bottom: 50px;
-  background-color: @fff;
-  box-shadow: 0 0 10px @info-light-3;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: rgba(212, 210, 190, 0.8);
+  box-shadow: 0 0 10px @bg;
   padding: 5px;
   cursor: pointer;
   z-index: 999;

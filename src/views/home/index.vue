@@ -3,6 +3,7 @@ import { ref } from 'vue';
 // https://pinyin-pro.cn/use/html.html
 import { html } from 'pinyin-pro';
 import { GUSHI_LIST } from '@/constant';
+import { scrollTo } from '@/utils';
 
 const prevAudio = ref<HTMLAudioElement | null>(null);
 
@@ -34,6 +35,10 @@ const stopAudio = (index: number) => {
     audioPlayer.pause();
   }
 };
+
+const onScrollTo = () => {
+  scrollTo(document.documentElement, 0);
+};
 </script>
 
 <template>
@@ -57,6 +62,7 @@ const stopAudio = (index: number) => {
       </div>
       <audio :id="`audioPlayer${index}`" :src="item.audio">您的浏览器不支持<code>audio</code> 元素。</audio>
     </div>
+    <ToTopIcon :onScrollTo="onScrollTo" />
   </div>
 </template>
 
@@ -66,6 +72,7 @@ const stopAudio = (index: number) => {
   padding: 10px;
   background-color: #d4d2be;
   box-sizing: border-box;
+  overflow: hidden;
 
   .poems-item {
     background-color: #f0efe3;
