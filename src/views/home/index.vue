@@ -214,8 +214,7 @@ const onJumpTo = (index: number, key: string) => {
     height: 30px;
     border-radius: 5px;
 
-    .icon-refresh,
-    .icon-mulu {
+    .icon-refresh {
       font-size: 18px;
     }
   }
@@ -223,6 +222,10 @@ const onJumpTo = (index: number, key: string) => {
   .menu {
     right: 20px;
     bottom: 80px;
+
+    .icon-mulu {
+      font-size: 20px;
+    }
   }
 
   .menu-list {
