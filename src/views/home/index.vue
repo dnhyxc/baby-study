@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { watch, ref } from 'vue';
 // https://pinyin-pro.cn/use/html.html
 import { html } from 'pinyin-pro';
 import { GUSHI_LIST } from '@/constant';
@@ -10,6 +10,12 @@ const { scrollRef, scrollTop } = useScroller();
 const prevAudio = ref<HTMLAudioElement | null>(null);
 const visible = ref<boolean>(false);
 const activeKey = ref<string>('');
+
+watch(visible, (newVal) => {
+  if (!newVal) {
+    activeKey.value = '';
+  }
+});
 
 const data = GUSHI_LIST.map((i) => {
   return {
@@ -24,6 +30,7 @@ const data = GUSHI_LIST.map((i) => {
 
 const playAudio = (index: number) => {
   if (prevAudio.value) {
+    prevAudio.value.currentTime = 0;
     prevAudio.value.pause();
   }
   const audioPlayer = document.getElementById(`audioPlayer${index}`) as HTMLAudioElement;
@@ -34,6 +41,10 @@ const playAudio = (index: number) => {
 };
 
 const stopAudio = (index: number) => {
+  if (prevAudio.value) {
+    prevAudio.value.currentTime = 0;
+    prevAudio.value.pause();
+  }
   const audioPlayer = document.getElementById(`audioPlayer${index}`) as HTMLAudioElement;
   if (audioPlayer) {
     audioPlayer.pause();
